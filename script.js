@@ -116,7 +116,7 @@ function showQuestion() {
 
     } else {
         updateProgressBar();
-        updateToNextquestion();
+        updateToNextQuestion();
     }
 }
 
@@ -151,7 +151,7 @@ function updateProgressBar (){
 }
 
 
-function updateToNextquestion(){
+function updateToNextQuestion(){
     
         //Wir machen uns einen container (let question), gehen in das große Array rein (questions) und holen uns das erste Element (currentQuestion) dort raus
         let question = questions[currentQuestion];
@@ -189,7 +189,7 @@ function answer(selection) { //selection ist _1, _2, _3, _4
     let idOfRightAnswer = `answer_${question['right_answer']}`; //answer_${3}
 
     //Wenn wir auf ein button klicken dann wird gezeigt welches richtig oder falsch ist
-    if (rightAnswerSelected(selectedQuestionNumber)) {
+    if (selectedQuestionNumber == question['right_answer']) {
         console.log('Richtige Antwort!!');
         document.getElementById(selection).parentNode.classList.add('bg-success');
         //.classList ist um eine CSS Klasse hinzuzufügen
@@ -210,9 +210,6 @@ function answer(selection) { //selection ist _1, _2, _3, _4
     //Button wird aktiviert sobald man eine Antwortmöglickeit ausgewählt hat
 }
 
-function rightAnswerSelected (selectedQuestionNumber){
-    return selectedQuestionNumber == question['right_answer']
-}
 
 
 function nextQuestion() {
