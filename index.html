@@ -35,8 +35,29 @@
 
     <div class="container">
         <div class="card quiz-card">
-            <img src="img/quiz.jpg" class="card-img-top">
-            <div class="card-body">
+            <img src="img/quiz.jpg" id="headerImage" class="card-img-top">
+
+            <div class="progress">
+                <div class="progress-bar" id="progressBar" role="progressbar" style="width: 0%;">25%</div>
+              </div>
+
+            <div class="card-body text-center" id="endScreen" style="display: none;">
+                <div class="text-center finalHeadline">Quiz beendet!
+                </div>
+
+                <div class="text-center">Du hast <b id="amountOfRightQuestions" >XXX</b> Fragen von <b id="amountOfQuestions">XXX</b> richtig beantwortet.
+                </div>
+                
+                <div class="button-row">
+                    <button onclick="restartGame()" class="btn btn-primary" >Erneut spielen</button>
+
+                </div>
+                
+
+            </div>
+
+
+            <div class="card-body" id="questionBody">
                 <h5 class="card-title" id="questiontext">Frage</h5>
 
                 <div class="card quizAnswerCard mb-3">

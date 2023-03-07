@@ -15,7 +15,7 @@ body {
     width: 30rem;
 }
 
-.question-footer{
+.question-footer {
     border-top: 1px solid rgba(0, 0, 0, 0.4);
     display: flex;
     justify-content: space-between;
@@ -33,4 +33,23 @@ body {
 .bg-success,
 .bg-danger {
     color: white;
+}
+
+.width-100 {
+    width: 100%;
+}
+
+.text-center {
+    text-align: center;
+}
+
+.finalHeadline {
+    font-size: 38px;
+    margin-bottom: 32px;
+}
+
+.button-row{
+    display: flex;
+    justify-content: center;
+    margin-top: 24px;
 }
