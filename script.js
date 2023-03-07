@@ -98,21 +98,84 @@ let currentQuestion = 0;
 function init() {
     document.getElementById('allQuestions').innerHTML = questions.length;
 
-    showQuestion();
+    showQuestion(); //Text unserer ersten Frage
 }
 
 
 function showQuestion() {
+    //Wir machen uns einen container (let question), gehen in das große Array rein (questions) und holen uns das erste Element (currentQuestion) dort raus
     let question = questions[currentQuestion];
+    //let question = "Wie heißt die Schicht der Atmosphäre, die der Erde am nächsten ist?"
+
+    document.getElementById('questionNumber').innerHTML =currentQuestion + 1;
+    //(Zahl) von 10 Fragen , die Zahl am anfang wird geändert und zählt mit
 
     document.getElementById('questiontext').innerHTML = question['question'];
+    //Frage = "Wie heißt die Schicht der Atmosphäre, die der Erde am nächsten ist?"
     document.getElementById('answer_1').innerHTML = question['answer_1'];
+    //"answer_1": "Stratosphäre",
     document.getElementById('answer_2').innerHTML = question['answer_2'];
+    //"answer_2": "Mesosphäre",
     document.getElementById('answer_3').innerHTML = question['answer_3'];
+    //"answer_3": "Troposphäre",
     document.getElementById('answer_4').innerHTML = question['answer_4'];
+    //"answer_4": "Thermosphäre",
 }
 
 
-function answer(selection){
+function answer(selection) { //selection ist _1, _2, _3, _4
+    let question = questions[currentQuestion];
+
+    console.log('Selected answer ist', selection);
+    //selection hat immer die jeweilige id answer_1,answer_2,answer_3,answer_4
+
+    let selectedQuestionNumber = selection.slice(-1);
+    //geben die ausgewählte Zahl aus von answer_
+    console.log('selectedQuestionNumber is', selectedQuestionNumber);
+
+    console.log('Right answer ist', question['right_answer']);
+    //Alle informationen zu der frage werden angezeigt
+
+    let idOfRightAnswer = `answer_${question['right_answer']}`; //answer_${3}
+
+    //Wenn wir auf ein button klicken dann wird gezeigt welches richtig oder falsch ist
+    if (selectedQuestionNumber == question['right_answer']) {
+        console.log('Richtige Antwort!!');
+        document.getElementById(selection).parentNode.classList.add('bg-success');
+        //.classList ist um eine CSS Klasse hinzuzufügen
+        //.parentNode ist um auf das übergeordnete Element(<div>) zu greifen
+    } else {
+        console.log('Falsche Antwort!!');
+        document.getElementById(selection).parentNode.classList.add('bg-danger');
+
+        document.getElementById(idOfRightAnswer).parentNode.classList.add('bg-success');
+        //Die richtige antwort wird angezeigt
+    }
+
+    document.getElementById('nextButton').disabled = false;
+    //Button wird aktiviert sobald man eine Antwortmöglickeit ausgewählt hat
+}
+
+
+function nextQuestion() {
+    currentQuestion++; //wird um +1 erhöht, z.b.: von 0 auf 1
+    showQuestion(); //nächste frage soll aufgerufen werden
+
+    document.getElementById('nextButton').disabled = true;
+    //Button wird daktiviert damit man erst die antworrt auswählen kann 
+
+    resetAnswerButtons();
+}
+
+
+function resetAnswerButtons() {
+    document.getElementById('answer_1').parentNode.classList.remove('bg-danger');
+    document.getElementById('answer_1').parentNode.classList.remove('bg-success');
+    document.getElementById('answer_2').parentNode.classList.remove('bg-danger');
+    document.getElementById('answer_2').parentNode.classList.remove('bg-success');
+    document.getElementById('answer_3').parentNode.classList.remove('bg-danger');
+    document.getElementById('answer_3').parentNode.classList.remove('bg-success');
+    document.getElementById('answer_4').parentNode.classList.remove('bg-danger');
+    document.getElementById('answer_4').parentNode.classList.remove('bg-success');
 
 }
